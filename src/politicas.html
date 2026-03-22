@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Politicas BE.LINE — Trocas, envio, privacidade e termos de uso.">
+<meta name="theme-color" content="#8C0502">
+<meta property="og:title" content="Politicas — BE.LINE">
+<meta property="og:description" content="Politicas BE.LINE — Trocas, envio, privacidade e termos de uso.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://images.unsplash.com/photo-1509631179647-0177331693ae?w=1200&q=80&fit=crop">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%238C0502'/><text x='50' y='68' font-family='sans-serif' font-size='40' font-weight='bold' fill='white' text-anchor='middle'>B.L</text></svg>">
+<title>Politicas — BE.LINE</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Saira:wght@300;400;500;600&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --c: #8C0502;
+  --r: #680A08;
+  --b: #0d0d0d;
+  --w: #ffffff;
+  --g: #f6f4f1;
+  --o: #9D753E;
+  --op: #c9a86c;
+  --border-w: rgba(140,5,2,.12);
+  --border-b: rgba(255,255,255,.08);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Poppins', sans-serif;
+  background: var(--w);
+  overflow-x: hidden;
+  cursor: none;
+  color: var(--b);
+}
+
+/* ── CURSOR ── */
+.cd { position: fixed; width: 6px; height: 6px; background: var(--c); border-radius: 50%; pointer-events: none; z-index: 9999; transform: translate(-50%,-50%); transition: width .3s, height .3s, background .3s; }
+.cr { position: fixed; width: 32px; height: 32px; border: 1px solid rgba(140,5,2,.3); border-radius: 50%; pointer-events: none; z-index: 9998; transform: translate(-50%,-50%); transition: width .4s, height .4s, border-color .3s; }
+.cd.hover { width: 12px; height: 12px; background: var(--o); }
+.cr.hover { width: 52px; height: 52px; border-color: var(--o); }
+
+/* ── STRIPES ── */
+.stripe { height: 3px; width: 100%; }
+.stripe-bw { background: repeating-linear-gradient(90deg, var(--b) 0 8px, var(--w) 8px 16px); }
+.stripe-co { background: repeating-linear-gradient(90deg, var(--c) 0 10px, var(--o) 10px 20px); }
+
+/* ══════════════════════════════════════════
+   NAV
+   ══════════════════════════════════════════ */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 500;
+  display: grid; grid-template-columns: 1fr auto 1fr;
+  align-items: center; padding: 0 48px; height: 60px;
+  background: rgba(255,255,255,.92);
+  backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border-w);
+  transition: background .5s, border-color .5s, box-shadow .5s;
+}
+nav.scrolled { box-shadow: 0 1px 20px rgba(0,0,0,.04); }
+.nl { font-family: 'Poppins', sans-serif; font-size: 9px; font-weight: 300; letter-spacing: .22em; text-transform: uppercase; color: var(--c); text-decoration: none; opacity: .65; transition: opacity .3s, color .3s; }
+.nl:hover { opacity: 1; }
+.nl-logo { font-family: 'Saira', sans-serif; font-size: 16px; font-weight: 600; letter-spacing: .3em; color: var(--c); text-decoration: none; transition: color .3s; }
+.nl-logo em { font-style: normal; color: var(--o); }
+.nav-l, .nav-r { display: flex; gap: 36px; align-items: center; }
+.nav-r { justify-content: flex-end; }
+.nav-icon { position: relative; display: flex; align-items: center; }
+.nav-icon svg { width: 18px; height: 18px; stroke: var(--c); stroke-width: 1.2; fill: none; opacity: .55; transition: opacity .3s; }
+.nav-icon:hover svg { opacity: 1; }
+.cart-count { position: absolute; top: -6px; right: -8px; width: 14px; height: 14px; background: var(--o); border-radius: 50%; font-family: 'Poppins'; font-size: 7px; font-weight: 500; color: var(--w); display: flex; align-items: center; justify-content: center; }
+
+/* ── HAMBURGER ── */
+.ham { display: none; flex-direction: column; gap: 5px; cursor: none; z-index: 600; position: relative; padding: 8px; }
+.ham span { display: block; width: 22px; height: 1px; background: var(--c); transition: all .4s cubic-bezier(.22,1,.36,1); }
+.ham.open span:nth-child(1) { transform: rotate(45deg) translate(4px, 4px); }
+.ham.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+.ham.open span:nth-child(3) { transform: rotate(-45deg) translate(4px, -4px); }
+
+/* ── MOBILE MENU ── */
+.mob-menu {
+  position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
+  background: var(--w); z-index: 550;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 28px;
+  opacity: 0; pointer-events: none;
+  transition: opacity .4s;
+}
+.mob-menu.open { opacity: 1; pointer-events: auto; }
+.mob-menu a {
+  font-family: 'Cormorant Garamond', serif; font-size: 32px; font-weight: 300;
+  color: var(--c); text-decoration: none; letter-spacing: .05em;
+  transition: color .3s;
+}
+.mob-menu a:hover { color: var(--o); }
+
+/* ══════════════════════════════════════════
+   PAGE LAYOUT — SIDEBAR + CONTENT
+   ══════════════════════════════════════════ */
+.page-wrap {
+  display: flex;
+  min-height: 100vh;
+  padding-top: 60px;
+}
+
+/* ── SIDEBAR ── */
+.sidebar {
+  width: 240px;
+  flex-shrink: 0;
+  position: sticky;
+  top: 60px;
+  height: calc(100vh - 60px);
+  background: var(--g);
+  border-right: 1px solid var(--border-w);
+  display: flex;
+  flex-direction: column;
+  padding-top: 48px;
+}
+.sidebar a {
+  display: block;
+  font-family: 'Poppins', sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  padding: 12px 24px;
+  color: rgba(0,0,0,.45);
+  text-decoration: none;
+  border-left: 2px solid transparent;
+  transition: color .3s, border-color .3s, background .3s;
+}
+.sidebar a:hover {
+  color: var(--c);
+}
+.sidebar a.active {
+  color: var(--c);
+  border-left-color: var(--c);
+  font-weight: 500;
+}
+
+/* ── MOBILE TABS (sidebar replacement) ── */
+.mob-tabs {
+  display: none;
+}
+
+/* ── MAIN CONTENT ── */
+.content {
+  flex: 1;
+  max-width: 720px;
+  padding: 0 64px 120px;
+}
+
+/* ── HERO ── */
+.pol-hero {
+  padding-top: 120px;
+  padding-bottom: 64px;
+  border-bottom: 1px solid var(--border-w);
+  margin-bottom: 0;
+}
+.pol-label {
+  font-family: 'Poppins', sans-serif;
+  font-size: 9px;
+  font-weight: 400;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--o);
+  margin-bottom: 16px;
+}
+.pol-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 42px;
+  font-weight: 300;
+  color: var(--c);
+  line-height: 1.15;
+}
+
+/* ── SECTION STYLES ── */
+.pol-section {
+  padding-top: 80px;
+}
+.pol-section-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 28px;
+  font-weight: 400;
+  color: var(--c);
+  margin-bottom: 32px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--border-w);
+}
+.pol-subtitle {
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--b);
+  margin-top: 32px;
+  margin-bottom: 12px;
+}
+.pol-text {
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 1.8;
+  color: rgba(0,0,0,.55);
+  margin-bottom: 16px;
+}
+.pol-list {
+  list-style: none;
+  padding-left: 20px;
+  margin-bottom: 16px;
+}
+.pol-list li {
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 1.8;
+  color: rgba(0,0,0,.55);
+  position: relative;
+  padding-left: 16px;
+  margin-bottom: 4px;
+}
+.pol-list li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 10px;
+  width: 4px;
+  height: 4px;
+  background: var(--c);
+}
+.pol-note {
+  border-left: 2px solid var(--o);
+  padding-left: 16px;
+  background: rgba(157,117,62,.04);
+  padding: 16px 16px 16px 16px;
+  border-radius: 0 4px 4px 0;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+.pol-note p {
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 1.8;
+  color: rgba(0,0,0,.55);
+}
+.pol-steps {
+  list-style: none;
+  padding-left: 0;
+  margin-bottom: 16px;
+  counter-reset: steps;
+}
+.pol-steps li {
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 1.8;
+  color: rgba(0,0,0,.55);
+  position: relative;
+  padding-left: 36px;
+  margin-bottom: 8px;
+  counter-increment: steps;
+}
+.pol-steps li::before {
+  content: counter(steps);
+  position: absolute;
+  left: 0;
+  top: 2px;
+  width: 22px;
+  height: 22px;
+  background: var(--c);
+  color: var(--w);
+  font-family: 'Poppins', sans-serif;
+  font-size: 10px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+}
+
+/* ══════════════════════════════════════════
+   FOOTER
+   ══════════════════════════════════════════ */
+footer { background: var(--w); padding: 80px 64px 0; border-top: 1px solid var(--border-w); }
+.ft { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 60px; padding-bottom: 64px; border-bottom: 1px solid var(--border-w); }
+.ft-logo { font-family: 'Saira', sans-serif; font-size: 22px; font-weight: 600; letter-spacing: .25em; color: var(--c); }
+.ft-logo em { font-style: normal; color: var(--o); }
+.ft-tag { font-family: 'Cormorant Garamond', serif; font-size: 14px; font-weight: 300; font-style: italic; color: rgba(140,5,2,.4); margin-top: 8px; line-height: 1.7; }
+.ft-ht { font-family: 'Poppins', sans-serif; font-size: 8px; font-weight: 400; letter-spacing: .3em; text-transform: uppercase; color: var(--o); opacity: .6; margin-bottom: 20px; }
+.ft-col ul { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+.ft-col ul a { font-family: 'Poppins', sans-serif; font-size: 12px; font-weight: 300; color: rgba(140,5,2,.5); text-decoration: none; transition: color .3s, opacity .3s; }
+.ft-col ul a:hover { color: var(--c); opacity: 1; }
+.ft-bot { display: flex; justify-content: space-between; align-items: center; padding: 24px 0; }
+.ft-copy { font-family: 'Poppins', sans-serif; font-size: 9px; color: rgba(140,5,2,.3); letter-spacing: .05em; }
+.ft-stripe { width: 48px; height: 2px; background: repeating-linear-gradient(90deg, var(--c) 0, var(--c) 7px, var(--o) 7px, var(--o) 14px); }
+
+/* ── REVEAL ── */
+.rv { opacity: 0; transform: translateY(28px); transition: opacity 1s ease, transform 1s ease; }
+.rv.on { opacity: 1; transform: translateY(0); }
+
+@keyframes up { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+
+/* ══════════════════════════════════════════
+   MOBILE — 768px
+   ══════════════════════════════════════════ */
+@media (max-width: 768px) {
+  .cd, .cr { display: none; }
+  body { cursor: auto; }
+
+  nav { grid-template-columns: 1fr auto; padding: 0 20px; height: 54px; }
+  .nav-l, .nav-r { display: none; }
+  .nl-logo { font-size: 14px; }
+  .ham { display: flex; }
+
+  .page-wrap { flex-direction: column; padding-top: 54px; }
+
+  .sidebar { display: none; }
+
+  .mob-tabs {
+    display: flex;
+    position: sticky;
+    top: 54px;
+    z-index: 400;
+    background: var(--g);
+    border-bottom: 1px solid var(--border-w);
+    overflow-x: auto;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+    white-space: nowrap;
+    padding: 0;
+  }
+  .mob-tabs::-webkit-scrollbar { display: none; }
+  .mob-tabs a {
+    display: inline-block;
+    font-family: 'Poppins', sans-serif;
+    font-size: 11px;
+    font-weight: 400;
+    padding: 14px 20px;
+    color: rgba(0,0,0,.45);
+    text-decoration: none;
+    border-bottom: 2px solid transparent;
+    transition: color .3s, border-color .3s;
+    flex-shrink: 0;
+  }
+  .mob-tabs a:hover { color: var(--c); }
+  .mob-tabs a.active {
+    color: var(--c);
+    border-bottom-color: var(--c);
+    font-weight: 500;
+  }
+
+  .content {
+    max-width: 100%;
+    padding: 0 20px 80px;
+  }
+
+  .pol-hero { padding-top: 80px; padding-bottom: 40px; }
+  .pol-title { font-size: 32px; }
+  .pol-section { padding-top: 56px; }
+  .pol-section-title { font-size: 24px; }
+
+  footer { padding: 48px 20px 0; }
+  .ft { grid-template-columns: 1fr 1fr; gap: 28px; }
+  .ft > div:first-child { grid-column: span 2; }
+  .ft-bot { flex-direction: column; gap: 12px; text-align: center; }
+}
+
+@media (max-width: 420px) {
+  .ft { grid-template-columns: 1fr; }
+  .ft > div:first-child { grid-column: span 1; }
+}
+
+/* ══════════════════════════════════════════
+   REDUCED MOTION
+   ══════════════════════════════════════════ */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  html { scroll-behavior: auto; }
+  .rv { opacity: 1 !important; transform: none !important; }
+}
+
+/* ══════════════════════════════════════════
+   PRINT
+   ══════════════════════════════════════════ */
+@media print {
+  nav, .sidebar, .mob-tabs, .cd, .cr, .stripe, .mob-menu { display: none !important; }
+  body { cursor: auto; color: #000; background: #fff; }
+  .page-wrap { display: block; padding-top: 0; }
+  .content { max-width: 100%; padding: 0; }
+  .pol-hero { padding-top: 20px; }
+  .pol-section { padding-top: 40px; }
+  .pol-section-title { font-size: 22px; }
+  .pol-text, .pol-list li, .pol-steps li, .pol-note p { color: #333; font-size: 12px; }
+  footer { padding: 32px 0 0; }
+  .ft { grid-template-columns: 1fr 1fr; gap: 24px; }
+  a { color: #000; }
+}
+</style>
+</head>
+<body>
+
+<!-- CURSOR -->
+<div class="cd" id="cd"></div>
+<div class="cr" id="cr"></div>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="nav-l">
+    <a href="preview-next.html#colecao" class="nl">Colecao</a>
+    <a href="preview-next.html#arquivo" class="nl">Arquivo</a>
+  </div>
+  <a href="preview-next.html" class="nl-logo">BE<em>.</em>LINE</a>
+  <div class="nav-r">
+    <a href="sobre.html" class="nl">Sobre</a>
+    <a href="vip.html" class="nl">Lista VIP</a>
+    <a href="#" class="nav-icon nl" aria-label="Buscar">
+      <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.35-4.35"/></svg>
+    </a>
+    <a href="#" class="nav-icon nl" aria-label="Sacola">
+      <svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+      <span class="cart-count">0</span>
+    </a>
+  </div>
+  <div class="ham" id="ham" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mob-menu" id="mobMenu">
+  <a href="preview-next.html#colecao">Colecao</a>
+  <a href="preview-next.html#arquivo">Arquivo</a>
+  <a href="sobre.html">Sobre</a>
+  <a href="vip.html">Lista VIP</a>
+  <a href="politicas.html">Politicas</a>
+</div>
+
+<!-- MOBILE TABS -->
+<div class="mob-tabs" id="mobTabs">
+  <a href="#trocas" data-target="trocas">Trocas e Devolucoes</a>
+  <a href="#envio" data-target="envio">Envio e Entrega</a>
+  <a href="#privacidade" data-target="privacidade">Privacidade</a>
+  <a href="#termos" data-target="termos">Termos de Uso</a>
+</div>
+
+<!-- PAGE LAYOUT -->
+<div class="page-wrap">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar" id="sidebar">
+    <a href="#trocas" data-target="trocas">Trocas e Devolucoes</a>
+    <a href="#envio" data-target="envio">Envio e Entrega</a>
+    <a href="#privacidade" data-target="privacidade">Privacidade</a>
+    <a href="#termos" data-target="termos">Termos de Uso</a>
+  </aside>
+
+  <!-- CONTENT -->
+  <main class="content">
+
+    <!-- HERO -->
+    <div class="pol-hero">
+      <p class="pol-label">Politicas</p>
+      <h1 class="pol-title">Transparencia em cada detalhe</h1>
+    </div>
+
+    <!-- TROCAS E DEVOLUCOES -->
+    <section class="pol-section" id="trocas">
+      <h2 class="pol-section-title">Trocas e Devolucoes</h2>
+
+      <h3 class="pol-subtitle">Prazo</h3>
+      <p class="pol-text">Voce tem ate 30 dias apos o recebimento do produto para solicitar a troca ou devolucao.</p>
+
+      <h3 class="pol-subtitle">Condicoes</h3>
+      <ul class="pol-list">
+        <li>Peca sem uso</li>
+        <li>Etiqueta original intacta</li>
+        <li>Na embalagem original</li>
+      </ul>
+
+      <h3 class="pol-subtitle">Processo</h3>
+      <ol class="pol-steps">
+        <li>Solicite a troca ou devolucao via WhatsApp ou e-mail</li>
+        <li>Receba a etiqueta de envio pre-paga</li>
+        <li>Envie a peca pelos Correios ou transportadora indicada</li>
+        <li>Receba o reembolso ou credito em ate 7 dias uteis</li>
+      </ol>
+
+      <h3 class="pol-subtitle">Reembolso</h3>
+      <p class="pol-text">O reembolso e feito pelo mesmo meio de pagamento utilizado na compra. Voce tambem pode optar por credito na loja, que inclui um bonus de 10% sobre o valor.</p>
+
+      <div class="pol-note">
+        <p><strong>Excecao:</strong> Pecas sob medida ou personalizadas nao sao passiveis de devolucao ou troca, salvo em caso de defeito de fabricacao.</p>
+      </div>
+    </section>
+
+    <!-- ENVIO E ENTREGA -->
+    <section class="pol-section" id="envio">
+      <h2 class="pol-section-title">Envio e Entrega</h2>
+
+      <h3 class="pol-subtitle">Frete</h3>
+      <p class="pol-text">Frete gratis para todo o Brasil, sem valor minimo de compra.</p>
+
+      <h3 class="pol-subtitle">Prazo de entrega</h3>
+      <p class="pol-text">Entre 5 e 8 dias uteis apos a confirmacao do pagamento, dependendo da sua regiao.</p>
+
+      <h3 class="pol-subtitle">Embalagem</h3>
+      <p class="pol-text">Cada pedido e embalado de forma premium, com papel de seda e selo de cera, refletindo o cuidado artesanal da marca.</p>
+
+      <h3 class="pol-subtitle">Rastreamento</h3>
+      <p class="pol-text">Voce recebe o codigo de rastreamento por e-mail e WhatsApp assim que o pedido for despachado.</p>
+
+      <div class="pol-note">
+        <p><strong>Entrega em maos:</strong> Todas as entregas exigem assinatura no recebimento para garantir a seguranca do seu pedido.</p>
+      </div>
+    </section>
+
+    <!-- PRIVACIDADE -->
+    <section class="pol-section" id="privacidade">
+      <h2 class="pol-section-title">Politica de Privacidade</h2>
+
+      <h3 class="pol-subtitle">Dados coletados</h3>
+      <ul class="pol-list">
+        <li>Nome completo</li>
+        <li>Endereco de e-mail</li>
+        <li>Telefone</li>
+        <li>Endereco de entrega</li>
+      </ul>
+
+      <h3 class="pol-subtitle">Uso dos dados</h3>
+      <ul class="pol-list">
+        <li>Processamento e envio de pedidos</li>
+        <li>Comunicacao sobre status de compras</li>
+        <li>Melhorias na experiencia de navegacao e compra</li>
+      </ul>
+
+      <h3 class="pol-subtitle">Compartilhamento</h3>
+      <p class="pol-text">A BE.LINE nao vende, aluga ou compartilha seus dados pessoais com terceiros para fins de marketing.</p>
+
+      <h3 class="pol-subtitle">Cookies</h3>
+      <p class="pol-text">Utilizamos cookies para melhorar sua experiencia de navegacao, analisar o trafego do site e personalizar conteudo. Voce pode gerenciar suas preferencias de cookies nas configuracoes do seu navegador.</p>
+
+      <h3 class="pol-subtitle">Seus direitos</h3>
+      <ul class="pol-list">
+        <li>Acesso aos seus dados pessoais</li>
+        <li>Correcao de informacoes incorretas</li>
+        <li>Exclusao dos seus dados mediante solicitacao</li>
+      </ul>
+
+      <div class="pol-note">
+        <p><strong>Contato:</strong> Para exercer seus direitos ou tirar duvidas sobre privacidade, escreva para contato@beline.com</p>
+      </div>
+    </section>
+
+    <!-- TERMOS DE USO -->
+    <section class="pol-section" id="termos">
+      <h2 class="pol-section-title">Termos de Uso</h2>
+
+      <h3 class="pol-subtitle">Propriedade intelectual</h3>
+      <p class="pol-text">Todo o conteudo deste site — incluindo textos, imagens, logotipos, design e codigo — e de propriedade exclusiva da BE.LINE e protegido por leis de direitos autorais.</p>
+
+      <h3 class="pol-subtitle">Uso do site</h3>
+      <p class="pol-text">Este site destina-se exclusivamente ao uso pessoal e nao comercial. E proibida a reproducao, distribuicao ou modificacao de qualquer conteudo sem autorizacao previa por escrito.</p>
+
+      <h3 class="pol-subtitle">Precos</h3>
+      <p class="pol-text">Os precos exibidos estao sujeitos a alteracao sem aviso previo. O preco vigente e aquele apresentado no momento da finalizacao da compra.</p>
+
+      <h3 class="pol-subtitle">Disponibilidade</h3>
+      <p class="pol-text">Todos os produtos estao sujeitos a disponibilidade de estoque. Por se tratar de pecas em edicao limitada, nao garantimos reposicao apos o esgotamento.</p>
+
+      <h3 class="pol-subtitle">Responsabilidade</h3>
+      <p class="pol-text">A responsabilidade da BE.LINE limita-se ao valor do produto adquirido. Nao nos responsabilizamos por danos indiretos decorrentes do uso do site.</p>
+
+      <div class="pol-note">
+        <p><strong>Foro:</strong> Fica eleito o foro da comarca de Sao Paulo/SP para dirimir quaisquer controversias decorrentes destes termos.</p>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<div class="stripe stripe-bw"></div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="ft">
+    <div>
+      <div class="ft-logo">BE<em>.</em>LINE</div>
+      <p class="ft-tag">Alta costura feminina.<br>Cada peca nasce uma vez.</p>
+    </div>
+    <div class="ft-col"><div class="ft-ht">Loja</div><ul><li><a href="preview-next.html#colecao">Colecao atual</a></li><li><a href="preview-next.html#arquivo">Arquivo</a></li><li><a href="vip.html">Lista VIP</a></li></ul></div>
+    <div class="ft-col"><div class="ft-ht">Marca</div><ul><li><a href="sobre.html">Sobre a BE.LINE</a></li><li><a href="preview-next.html#sobre">Manifesto</a></li><li><a href="contato.html">Contato</a></li></ul></div>
+    <div class="ft-col"><div class="ft-ht">Ajuda</div><ul><li><a href="politicas.html">Trocas e devolucoes</a></li><li><a href="ajuda.html">Guia de medidas</a></li><li><a href="#">WhatsApp</a></li></ul></div>
+  </div>
+  <div class="ft-bot">
+    <span class="ft-copy">&copy; 2025 BE.LINE - Todos os direitos reservados.</span>
+    <div class="ft-stripe"></div>
+    <span class="ft-copy">Instagram . WhatsApp</span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  /* ── CURSOR ── */
+  const cd = document.getElementById('cd');
+  const cr = document.getElementById('cr');
+  let mx = 0, my = 0, cx = 0, cy = 0;
+  document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+  (function loop(){
+    cx += (mx - cx) * .15;
+    cy += (my - cy) * .15;
+    cd.style.left = mx + 'px'; cd.style.top = my + 'px';
+    cr.style.left = cx + 'px'; cr.style.top = cy + 'px';
+    requestAnimationFrame(loop);
+  })();
+  document.querySelectorAll('a, button, .ham').forEach(el => {
+    el.addEventListener('mouseenter', () => { cd.classList.add('hover'); cr.classList.add('hover'); });
+    el.addEventListener('mouseleave', () => { cd.classList.remove('hover'); cr.classList.remove('hover'); });
+  });
+
+  /* ── NAV SCROLL SHADOW ── */
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 10);
+  }, { passive: true });
+
+  /* ── HAMBURGER ── */
+  const ham = document.getElementById('ham');
+  const mobMenu = document.getElementById('mobMenu');
+  ham.addEventListener('click', () => {
+    ham.classList.toggle('open');
+    mobMenu.classList.toggle('open');
+    document.body.style.overflow = mobMenu.classList.contains('open') ? 'hidden' : '';
+  });
+
+  /* ── SIDEBAR / TABS — SMOOTH SCROLL ── */
+  const sidebarLinks = document.querySelectorAll('.sidebar a, .mob-tabs a');
+  sidebarLinks.forEach(link => {
+    link.addEventListener('click', e => {
+      e.preventDefault();
+      const id = link.getAttribute('data-target');
+      const target = document.getElementById(id);
+      if (target) {
+        const offset = window.innerWidth <= 768 ? 110 : 80;
+        const top = target.getBoundingClientRect().top + window.scrollY - offset;
+        window.scrollTo({ top, behavior: 'smooth' });
+      }
+    });
+  });
+
+  /* ── SCROLL SPY (IntersectionObserver) ── */
+  const sections = document.querySelectorAll('.pol-section');
+  const allNavLinks = document.querySelectorAll('.sidebar a, .mob-tabs a');
+
+  function setActive(id) {
+    allNavLinks.forEach(l => {
+      l.classList.toggle('active', l.getAttribute('data-target') === id);
+    });
+  }
+
+  const observerOptions = {
+    rootMargin: '-20% 0px -60% 0px',
+    threshold: 0
+  };
+
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        setActive(entry.target.id);
+      }
+    });
+  }, observerOptions);
+
+  sections.forEach(s => observer.observe(s));
+
+  /* ── REVEAL ON SCROLL ── */
+  const rvObserver = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('on'); rvObserver.unobserve(e.target); }
+    });
+  }, { threshold: .15 });
+  document.querySelectorAll('.rv').forEach(el => rvObserver.observe(el));
+
+  /* ── MOBILE TAB SCROLL INTO VIEW ── */
+  const mobTabs = document.getElementById('mobTabs');
+  if (mobTabs) {
+    const tabObserver = new MutationObserver(() => {
+      const activeTab = mobTabs.querySelector('.active');
+      if (activeTab) {
+        activeTab.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+      }
+    });
+    allNavLinks.forEach(link => {
+      tabObserver.observe(link, { attributes: true, attributeFilter: ['class'] });
+    });
+  }
+})();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Lista VIP BE.LINE — Acesso exclusivo a colecoes antes de todos. Pecas unicas que nao voltam.">
+<meta name="theme-color" content="#8C0502">
+<meta property="og:title" content="Lista VIP — BE.LINE">
+<meta property="og:description" content="Lista VIP BE.LINE — Acesso exclusivo a colecoes antes de todos. Pecas unicas que nao voltam.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://images.unsplash.com/photo-1509631179647-0177331693ae?w=1200&q=80&fit=crop">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%238C0502'/><text x='50' y='68' font-family='sans-serif' font-size='40' font-weight='bold' fill='white' text-anchor='middle'>B.L</text></svg>">
+<title>Lista VIP — BE.LINE</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Saira:wght@300;400;500;600&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --c: #8C0502;
+  --r: #680A08;
+  --b: #0d0d0d;
+  --w: #ffffff;
+  --g: #f6f4f1;
+  --o: #9D753E;
+  --op: #c9a86c;
+  --border-w: rgba(140,5,2,.12);
+  --border-b: rgba(255,255,255,.08);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Poppins', sans-serif;
+  background: var(--b);
+  overflow-x: hidden;
+  cursor: none;
+  color: var(--b);
+}
+
+/* ── CURSOR CUSTOM ── */
+.cd { position: fixed; width: 6px; height: 6px; background: var(--c); border-radius: 50%; pointer-events: none; z-index: 9999; transform: translate(-50%,-50%); transition: width .3s, height .3s, background .3s; }
+.cr { position: fixed; width: 32px; height: 32px; border: 1px solid rgba(140,5,2,.3); border-radius: 50%; pointer-events: none; z-index: 9998; transform: translate(-50%,-50%); transition: width .4s, height .4s, border-color .3s; }
+.cd.hover { width: 12px; height: 12px; background: var(--o); }
+.cr.hover { width: 52px; height: 52px; border-color: var(--o); }
+
+/* ── STRIPES ── */
+.stripe { height: 3px; width: 100%; }
+.stripe-bw { background: repeating-linear-gradient(90deg, var(--b) 0 8px, var(--w) 8px 16px); }
+.stripe-co { background: repeating-linear-gradient(90deg, var(--c) 0 10px, var(--o) 10px 20px); }
+
+/* ══════════════════════════════════════════
+   NAV
+   ══════════════════════════════════════════ */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 500;
+  display: grid; grid-template-columns: 1fr auto 1fr;
+  align-items: center; padding: 0 48px; height: 60px;
+  background: rgba(255,255,255,.92);
+  backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border-w);
+  transition: background .5s, border-color .5s, box-shadow .5s;
+}
+nav.scrolled { box-shadow: 0 1px 20px rgba(0,0,0,.04); }
+.nl { font-family: 'Poppins', sans-serif; font-size: 9px; font-weight: 300; letter-spacing: .22em; text-transform: uppercase; color: var(--c); text-decoration: none; opacity: .65; transition: opacity .3s, color .3s; }
+.nl:hover { opacity: 1; }
+.nl.active { opacity: 1; font-weight: 400; }
+.nl-logo { font-family: 'Saira', sans-serif; font-size: 16px; font-weight: 600; letter-spacing: .3em; color: var(--c); text-decoration: none; transition: color .3s; }
+.nl-logo em { font-style: normal; color: var(--o); }
+.nav-l, .nav-r { display: flex; gap: 36px; align-items: center; }
+.nav-r { justify-content: flex-end; }
+
+/* nav icons */
+.nav-icon { position: relative; display: flex; align-items: center; }
+.nav-icon svg { width: 18px; height: 18px; stroke: var(--c); stroke-width: 1.2; fill: none; opacity: .55; transition: opacity .3s; }
+.nav-icon:hover svg { opacity: 1; }
+.cart-count { position: absolute; top: -6px; right: -8px; width: 14px; height: 14px; background: var(--o); border-radius: 50%; font-family: 'Poppins'; font-size: 7px; font-weight: 500; color: var(--w); display: flex; align-items: center; justify-content: center; }
+
+/* ── HAMBURGER ── */
+.ham { display: none; flex-direction: column; gap: 5px; cursor: none; z-index: 600; position: relative; padding: 8px; }
+.ham span { display: block; width: 22px; height: 1px; background: var(--c); transition: all .4s cubic-bezier(.22,1,.36,1); }
+.ham.open span:nth-child(1) { transform: rotate(45deg) translate(4px, 4px); }
+.ham.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+.ham.open span:nth-child(3) { transform: rotate(-45deg) translate(4px, -4px); }
+
+/* ── MOBILE OVERLAY ── */
+.mob-overlay {
+  position: fixed; inset: 0; z-index: 499;
+  background: rgba(255,255,255,.97);
+  backdrop-filter: blur(30px); -webkit-backdrop-filter: blur(30px);
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 28px;
+  opacity: 0; visibility: hidden; transition: opacity .5s, visibility .5s;
+}
+.mob-overlay.open { opacity: 1; visibility: visible; }
+.mob-overlay a {
+  font-family: 'Cormorant Garamond', serif; font-size: 28px; font-weight: 300; font-style: italic;
+  color: var(--c); text-decoration: none; opacity: 0; transform: translateY(16px); transition: opacity .5s, transform .5s, color .3s;
+}
+.mob-overlay.open a { opacity: 1; transform: translateY(0); }
+.mob-overlay.open a:nth-child(2) { transition-delay: .06s; }
+.mob-overlay.open a:nth-child(3) { transition-delay: .12s; }
+.mob-overlay.open a:nth-child(4) { transition-delay: .18s; }
+.mob-overlay a:hover { color: var(--o); }
+
+/* ══════════════════════════════════════════
+   HERO — VIP WAITLIST
+   ══════════════════════════════════════════ */
+.hero {
+  padding-top: 60px;
+  display: grid; grid-template-columns: 55% 45%;
+  min-height: 100vh;
+  background: var(--b);
+  overflow: hidden;
+}
+.hero-l {
+  position: relative; overflow: hidden;
+}
+.hero-img {
+  width: 100%; height: 100%;
+  object-fit: cover; object-position: center top;
+  display: block;
+  will-change: transform;
+}
+.hero-r {
+  display: flex; flex-direction: column; justify-content: center;
+  padding: 80px 72px;
+  position: relative;
+}
+.hero-label {
+  font-family: 'Poppins', sans-serif; font-size: 10px; font-weight: 400;
+  letter-spacing: .22em; text-transform: uppercase; color: var(--o);
+  margin-bottom: 24px;
+}
+.hero-title {
+  font-family: 'Cormorant Garamond', serif; font-size: 48px; font-weight: 300; font-style: italic;
+  color: var(--w); line-height: 1.15; margin-bottom: 20px;
+}
+.hero-sub {
+  font-family: 'Poppins', sans-serif; font-size: 14px; font-weight: 300;
+  color: rgba(255,255,255,.5); line-height: 1.7; margin-bottom: 48px;
+  max-width: 380px;
+}
+
+/* ── FORM ── */
+.vip-form { display: flex; flex-direction: column; gap: 32px; }
+.input-wrap {
+  position: relative; width: 100%; max-width: 380px;
+}
+.input-wrap input {
+  width: 100%; background: transparent; border: none; border-bottom: 1px solid rgba(255,255,255,.15);
+  padding: 12px 0; font-family: 'Poppins', sans-serif; font-size: 13px; font-weight: 300;
+  color: var(--w); outline: none; transition: border-color .3s;
+}
+.input-wrap input::placeholder { color: rgba(255,255,255,.25); letter-spacing: .04em; }
+.input-wrap .input-line {
+  position: absolute; bottom: 0; left: 50%; width: 0; height: 1px;
+  background: var(--o); transition: width .5s cubic-bezier(.22,1,.36,1), left .5s cubic-bezier(.22,1,.36,1);
+}
+.input-wrap input:focus ~ .input-line { width: 100%; left: 0; }
+.input-wrap label {
+  position: absolute; top: -14px; left: 0;
+  font-family: 'Poppins', sans-serif; font-size: 8px; font-weight: 400;
+  letter-spacing: .18em; text-transform: uppercase; color: rgba(255,255,255,.3);
+}
+
+.vip-btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: fit-content; padding: 18px 48px;
+  background: var(--c); border: none; cursor: none;
+  font-family: 'Poppins', sans-serif; font-size: 10px; font-weight: 400;
+  letter-spacing: .2em; text-transform: uppercase; color: var(--w);
+  position: relative; overflow: hidden; transition: transform .3s;
+  margin-top: 8px;
+}
+.vip-btn::before {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(135deg, var(--o), var(--op));
+  opacity: 0; transition: opacity .4s;
+}
+.vip-btn:hover::before { opacity: 1; }
+.vip-btn:hover { transform: translateY(-1px); }
+.vip-btn:active { transform: scale(.97); }
+.vip-btn span { position: relative; z-index: 1; }
+
+/* ── LOADING / SUCCESS ── */
+.vip-btn .btn-spinner {
+  display: none; width: 16px; height: 16px; border: 1.5px solid rgba(255,255,255,.3);
+  border-top-color: var(--w); border-radius: 50%; animation: spin .7s linear infinite;
+  position: relative; z-index: 1;
+}
+.vip-btn.loading span { display: none; }
+.vip-btn.loading .btn-spinner { display: block; }
+.vip-btn.loading { pointer-events: none; }
+
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.success-msg {
+  display: none; flex-direction: column; align-items: flex-start; gap: 16px;
+}
+.success-msg.show { display: flex; }
+.success-check {
+  width: 48px; height: 48px; border-radius: 50%; border: 1.5px solid var(--o);
+  display: flex; align-items: center; justify-content: center;
+  opacity: 0; transform: scale(.5); transition: opacity .5s, transform .5s cubic-bezier(.22,1,.36,1);
+}
+.success-msg.show .success-check { opacity: 1; transform: scale(1); }
+.success-check svg { width: 20px; height: 20px; stroke: var(--o); stroke-width: 2; fill: none;
+  stroke-dasharray: 28; stroke-dashoffset: 28; transition: stroke-dashoffset .6s .3s ease;
+}
+.success-msg.show .success-check svg { stroke-dashoffset: 0; }
+.success-text {
+  font-family: 'Cormorant Garamond', serif; font-size: 28px; font-weight: 300; font-style: italic;
+  color: var(--w); opacity: 0; transform: translateY(12px); transition: opacity .5s .4s, transform .5s .4s;
+}
+.success-msg.show .success-text { opacity: 1; transform: translateY(0); }
+.success-sub {
+  font-family: 'Poppins', sans-serif; font-size: 12px; font-weight: 300;
+  color: rgba(255,255,255,.4); opacity: 0; transition: opacity .5s .6s;
+}
+.success-msg.show .success-sub { opacity: 1; }
+
+/* ══════════════════════════════════════════
+   BENEFITS
+   ══════════════════════════════════════════ */
+.benefits {
+  background: var(--g); padding: 120px 48px;
+}
+.benefits-title {
+  font-family: 'Cormorant Garamond', serif; font-size: 36px; font-weight: 300;
+  color: var(--b); text-align: center; margin-bottom: 64px;
+}
+.benefits-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 24px;
+  max-width: 900px; margin: 0 auto;
+}
+.benefit-card {
+  background: rgba(255,255,255,.8);
+  backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(140,5,2,.06);
+  padding: 40px 36px; position: relative; overflow: hidden;
+  transition: transform .4s, box-shadow .4s;
+}
+.benefit-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0,0,0,.06); }
+.benefit-card::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: repeating-linear-gradient(90deg, var(--c) 0 10px, var(--o) 10px 20px);
+}
+.benefit-num {
+  font-family: 'Saira', sans-serif; font-size: 32px; font-weight: 200;
+  color: var(--o); opacity: .4; margin-bottom: 16px;
+  font-variant-numeric: tabular-nums;
+}
+.benefit-h {
+  font-family: 'Poppins', sans-serif; font-size: 14px; font-weight: 500;
+  letter-spacing: .04em; color: var(--b); margin-bottom: 8px;
+}
+.benefit-p {
+  font-family: 'Poppins', sans-serif; font-size: 12px; font-weight: 300;
+  color: rgba(13,13,13,.5); line-height: 1.7;
+}
+
+/* ══════════════════════════════════════════
+   SOCIAL PROOF
+   ══════════════════════════════════════════ */
+.proof {
+  background: var(--b); padding: 120px 48px; text-align: center;
+}
+.proof-counter {
+  font-family: 'Saira', sans-serif; font-size: 12px; font-weight: 300;
+  letter-spacing: .25em; text-transform: uppercase; color: rgba(255,255,255,.35);
+  margin-bottom: 48px;
+}
+.proof-counter .count-num {
+  font-size: 48px; font-weight: 600; color: var(--o);
+  display: block; margin-bottom: 12px; letter-spacing: .05em;
+  font-variant-numeric: tabular-nums;
+}
+.proof-quote {
+  font-family: 'Cormorant Garamond', serif; font-size: 28px; font-weight: 300; font-style: italic;
+  color: rgba(255,255,255,.6); line-height: 1.6; max-width: 640px; margin: 0 auto 24px;
+}
+.proof-attr {
+  font-family: 'Saira', sans-serif; font-size: 10px; font-weight: 400;
+  letter-spacing: .3em; text-transform: uppercase; color: var(--o); opacity: .5;
+}
+
+/* ══════════════════════════════════════════
+   FOOTER
+   ══════════════════════════════════════════ */
+footer { background: var(--w); padding: 64px 48px 0; border-top: 1px solid var(--border-w); }
+.ft { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 60px; padding-bottom: 48px; border-bottom: 1px solid var(--border-w); }
+.ft-logo { font-family: 'Saira'; font-size: 22px; font-weight: 600; letter-spacing: .25em; color: var(--c); }
+.ft-logo em { font-style: normal; color: var(--o); }
+.ft-tag { font-family: 'Cormorant Garamond', serif; font-size: 14px; font-weight: 300; font-style: italic; color: rgba(140,5,2,.4); margin-top: 8px; line-height: 1.7; }
+.ft-ht { font-family: 'Poppins'; font-size: 8px; font-weight: 400; letter-spacing: .3em; text-transform: uppercase; color: var(--o); opacity: .6; margin-bottom: 20px; }
+.ft-col ul { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+.ft-col ul a { font-family: 'Poppins'; font-size: 12px; font-weight: 300; color: rgba(140,5,2,.5); text-decoration: none; transition: color .3s; }
+.ft-col ul a:hover { color: var(--c); }
+.ft-bot { display: flex; justify-content: space-between; align-items: center; padding: 24px 0; }
+.ft-copy { font-family: 'Poppins'; font-size: 9px; color: rgba(140,5,2,.3); letter-spacing: .05em; }
+.ft-stripe { width: 48px; height: 2px; background: repeating-linear-gradient(90deg, var(--c) 0, var(--c) 7px, var(--o) 7px, var(--o) 14px); }
+
+/* ══════════════════════════════════════════
+   SCROLL REVEAL
+   ══════════════════════════════════════════ */
+.rv { opacity: 0; transform: translateY(30px); transition: opacity .8s ease, transform .8s ease; }
+.rv.on { opacity: 1; transform: translateY(0); }
+.rv.d1 { transition-delay: .12s; }
+.rv.d2 { transition-delay: .24s; }
+.rv.d3 { transition-delay: .36s; }
+.rv.d4 { transition-delay: .48s; }
+
+/* ══════════════════════════════════════════
+   FOCUS & SR-ONLY
+   ══════════════════════════════════════════ */
+:focus-visible { outline: 2px solid var(--o); outline-offset: 2px; }
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+
+/* ══════════════════════════════════════════
+   REDUCED MOTION
+   ══════════════════════════════════════════ */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+  .rv { opacity: 1; transform: none; }
+  .hero-img { transform: none !important; }
+  .success-check { opacity: 1; transform: scale(1); }
+  .success-check svg { stroke-dashoffset: 0; }
+  .success-text, .success-sub { opacity: 1; transform: none; }
+}
+
+/* ══════════════════════════════════════════
+   MOBILE — 768px
+   ══════════════════════════════════════════ */
+@media (max-width: 768px) {
+  .cd, .cr { display: none; }
+  body { cursor: auto; }
+
+  nav { grid-template-columns: 1fr auto; padding: 0 20px; height: 54px; }
+  .nav-l, .nav-r { display: none; }
+  .nl-logo { font-size: 14px; }
+  .ham { display: flex; }
+
+  /* Hero stacked */
+  .hero { grid-template-columns: 1fr; min-height: auto; }
+  .hero-l { height: 50vh; }
+  .hero-r { padding: 48px 24px 64px; }
+  .hero-title { font-size: 34px; }
+  .hero-sub { font-size: 13px; margin-bottom: 36px; }
+  .input-wrap { max-width: 100%; }
+  .vip-btn { width: 100%; justify-content: center; }
+
+  /* Benefits */
+  .benefits { padding: 80px 24px; }
+  .benefits-title { font-size: 28px; margin-bottom: 40px; }
+  .benefits-grid { grid-template-columns: 1fr; gap: 16px; }
+  .benefit-card { padding: 32px 24px; }
+
+  /* Proof */
+  .proof { padding: 80px 24px; }
+  .proof-quote { font-size: 22px; }
+  .proof-counter .count-num { font-size: 36px; }
+
+  /* Footer */
+  footer { padding: 48px 20px 0; }
+  .ft { grid-template-columns: 1fr 1fr; gap: 32px; }
+  .ft-bot { flex-direction: column; gap: 12px; text-align: center; }
+
+  /* Touch feedback */
+  .benefit-card:active, .vip-btn:active { transform: scale(.97); }
+}
+
+@media (max-width: 480px) {
+  .ft { grid-template-columns: 1fr; gap: 28px; }
+}
+</style>
+</head>
+<body>
+
+<!-- CUSTOM CURSOR -->
+<div class="cd" id="cd"></div>
+<div class="cr" id="cr"></div>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="nav-l">
+    <a href="preview-next.html#colecao" class="nl">Colecao</a>
+    <a href="preview-next.html#arquivo" class="nl">Arquivo</a>
+  </div>
+  <a href="preview-next.html" class="nl-logo">BE<em>.</em>LINE</a>
+  <div class="nav-r">
+    <a href="sobre.html" class="nl">Sobre</a>
+    <a href="vip.html" class="nl active">Lista VIP</a>
+    <!-- Search icon -->
+    <a href="#" class="nav-icon nl" aria-label="Buscar">
+      <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.35-4.35"/></svg>
+    </a>
+    <!-- Cart icon -->
+    <a href="#" class="nav-icon nl" aria-label="Sacola">
+      <svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+      <span class="cart-count">0</span>
+    </a>
+  </div>
+  <div class="ham" id="ham" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- MOBILE MENU OVERLAY -->
+<div class="mob-overlay" id="mobOverlay">
+  <a href="preview-next.html#colecao">Colecao</a>
+  <a href="preview-next.html#arquivo">Arquivo</a>
+  <a href="sobre.html">Sobre</a>
+  <a href="vip.html">Lista VIP</a>
+</div>
+
+<!-- ══════════════════════════════════════════
+     HERO — VIP SIGNUP
+     ══════════════════════════════════════════ -->
+<section class="hero">
+  <div class="hero-l">
+    <img class="hero-img" id="heroImg" src="https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=1200&q=85&fit=crop" alt="BE.LINE — Moda feminina exclusiva">
+  </div>
+  <div class="hero-r">
+    <span class="hero-label rv">LISTA VIP</span>
+    <h1 class="hero-title rv d1">Seja a primeira<br>a vestir</h1>
+    <p class="hero-sub rv d2">Acesso exclusivo a colecoes antes de todos. Pecas unicas que nao voltam.</p>
+
+    <!-- FORM -->
+    <form class="vip-form rv d3" id="vipForm" autocomplete="off">
+      <div class="input-wrap">
+        <label for="vipEmail">E-MAIL</label>
+        <input type="email" id="vipEmail" name="email" placeholder="Seu melhor e-mail" required>
+        <div class="input-line"></div>
+      </div>
+      <div class="input-wrap">
+        <label for="vipWhats">WHATSAPP (OPCIONAL)</label>
+        <input type="tel" id="vipWhats" name="whatsapp" placeholder="(00) 00000-0000">
+        <div class="input-line"></div>
+      </div>
+      <button type="submit" class="vip-btn" id="vipBtn">
+        <span>Entrar na lista</span>
+        <div class="btn-spinner"></div>
+      </button>
+    </form>
+
+    <!-- SUCCESS STATE -->
+    <div class="success-msg" id="successMsg">
+      <div class="success-check">
+        <svg viewBox="0 0 24 24"><polyline points="4 12 10 18 20 6"/></svg>
+      </div>
+      <div class="success-text">Voce esta na lista!</div>
+      <div class="success-sub">Em breve voce recebera novidades exclusivas.</div>
+    </div>
+  </div>
+</section>
+
+<div class="stripe stripe-co"></div>
+
+<!-- ══════════════════════════════════════════
+     BENEFITS
+     ══════════════════════════════════════════ -->
+<section class="benefits">
+  <h2 class="benefits-title rv">Privilegios exclusivos</h2>
+  <div class="benefits-grid">
+    <div class="benefit-card rv">
+      <div class="benefit-num" data-target="01">00</div>
+      <h3 class="benefit-h">Acesso antecipado</h3>
+      <p class="benefit-p">48h antes do lancamento. Garanta sua peca antes de qualquer pessoa.</p>
+    </div>
+    <div class="benefit-card rv d1">
+      <div class="benefit-num" data-target="02">00</div>
+      <h3 class="benefit-h">Pecas exclusivas</h3>
+      <p class="benefit-p">Itens reservados para VIPs. Modelos que so quem esta na lista pode ter.</p>
+    </div>
+    <div class="benefit-card rv d2">
+      <div class="benefit-num" data-target="03">00</div>
+      <h3 class="benefit-h">Convites privados</h3>
+      <p class="benefit-p">Eventos e previews exclusivos. Conheca as colecoes em primeira mao.</p>
+    </div>
+    <div class="benefit-card rv d3">
+      <div class="benefit-num" data-target="04">00</div>
+      <h3 class="benefit-h">Atendimento dedicado</h3>
+      <p class="benefit-p">WhatsApp direto com a marca. Atendimento personalizado e prioritario.</p>
+    </div>
+  </div>
+</section>
+
+<div class="stripe stripe-bw"></div>
+
+<!-- ══════════════════════════════════════════
+     SOCIAL PROOF
+     ══════════════════════════════════════════ -->
+<section class="proof">
+  <div class="proof-counter rv">
+    <span class="count-num" id="proofCount" data-target="47">0</span>
+    mulheres ja fazem parte
+  </div>
+  <p class="proof-quote rv d1">A exclusividade nao e sobre ter mais.<br>E sobre escolher melhor.</p>
+  <span class="proof-attr rv d2">— BE.LINE</span>
+</section>
+
+<div class="stripe stripe-co"></div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="ft">
+    <div>
+      <div class="ft-logo">BE<em>.</em>LINE</div>
+      <p class="ft-tag">Alta costura feminina.<br>Cada peca nasce uma vez.</p>
+    </div>
+    <div class="ft-col"><div class="ft-ht">Loja</div><ul><li><a href="preview-next.html#colecao">Colecao atual</a></li><li><a href="preview-next.html#arquivo">Arquivo</a></li><li><a href="vip.html">Lista VIP</a></li></ul></div>
+    <div class="ft-col"><div class="ft-ht">Marca</div><ul><li><a href="sobre.html">Sobre a BE.LINE</a></li><li><a href="preview-next.html#sobre">Manifesto</a></li><li><a href="contato.html">Contato</a></li></ul></div>
+    <div class="ft-col"><div class="ft-ht">Ajuda</div><ul><li><a href="politicas.html">Trocas e devolucoes</a></li><li><a href="ajuda.html">Guia de medidas</a></li><li><a href="#">WhatsApp</a></li></ul></div>
+  </div>
+  <div class="ft-bot">
+    <span class="ft-copy">&copy; 2025 BE.LINE - Todos os direitos reservados.</span>
+    <div class="ft-stripe"></div>
+    <span class="ft-copy">Instagram . WhatsApp</span>
+  </div>
+</footer>
+
+<script>
+/* ══════════════════════════════════════════
+   CUSTOM CURSOR
+   ══════════════════════════════════════════ */
+(function(){
+  const cd = document.getElementById('cd');
+  const cr = document.getElementById('cr');
+  if (!cd || !cr) return;
+  let mx = -100, my = -100, cx = -100, cy = -100;
+  const isTouch = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+  if (isTouch) { cd.style.display = 'none'; cr.style.display = 'none'; document.body.style.cursor = 'auto'; return; }
+
+  document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+  (function loop(){
+    cx += (mx - cx) * .18;
+    cy += (my - cy) * .18;
+    cd.style.left = mx + 'px'; cd.style.top = my + 'px';
+    cr.style.left = cx + 'px'; cr.style.top = cy + 'px';
+    requestAnimationFrame(loop);
+  })();
+
+  document.querySelectorAll('a, button, input, .ham').forEach(el => {
+    el.addEventListener('mouseenter', () => { cd.classList.add('hover'); cr.classList.add('hover'); });
+    el.addEventListener('mouseleave', () => { cd.classList.remove('hover'); cr.classList.remove('hover'); });
+  });
+})();
+
+/* ══════════════════════════════════════════
+   NAV SCROLL
+   ══════════════════════════════════════════ */
+(function(){
+  const nav = document.getElementById('nav');
+  let last = 0;
+  window.addEventListener('scroll', () => {
+    const y = window.scrollY;
+    if (y > 40) nav.classList.add('scrolled');
+    else nav.classList.remove('scrolled');
+    last = y;
+  }, { passive: true });
+})();
+
+/* ══════════════════════════════════════════
+   HAMBURGER MENU
+   ══════════════════════════════════════════ */
+(function(){
+  const ham = document.getElementById('ham');
+  const overlay = document.getElementById('mobOverlay');
+  if (!ham || !overlay) return;
+  ham.addEventListener('click', () => {
+    ham.classList.toggle('open');
+    overlay.classList.toggle('open');
+    document.body.style.overflow = overlay.classList.contains('open') ? 'hidden' : '';
+  });
+  overlay.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => {
+      ham.classList.remove('open');
+      overlay.classList.remove('open');
+      document.body.style.overflow = '';
+    });
+  });
+})();
+
+/* ══════════════════════════════════════════
+   SCROLL REVEAL
+   ══════════════════════════════════════════ */
+(function(){
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (prefersReduced) { document.querySelectorAll('.rv').forEach(el => el.classList.add('on')); return; }
+
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('on'); obs.unobserve(e.target); } });
+  }, { threshold: .15 });
+  document.querySelectorAll('.rv').forEach(el => obs.observe(el));
+})();
+
+/* ══════════════════════════════════════════
+   PARALLAX HERO IMAGE
+   ══════════════════════════════════════════ */
+(function(){
+  const img = document.getElementById('heroImg');
+  if (!img || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  window.addEventListener('scroll', () => {
+    const y = window.scrollY;
+    if (y < window.innerHeight * 1.5) {
+      img.style.transform = 'translateY(' + (y * .12) + 'px) scale(1.05)';
+    }
+  }, { passive: true });
+})();
+
+/* ══════════════════════════════════════════
+   COUNTER ANIMATION
+   ══════════════════════════════════════════ */
+(function(){
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function animateCount(el, target, duration) {
+    if (prefersReduced) { el.textContent = target; return; }
+    const start = performance.now();
+    const isZeroPadded = typeof target === 'string' && target.startsWith('0');
+    const numTarget = parseInt(target, 10);
+    function tick(now) {
+      const progress = Math.min((now - start) / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      const current = Math.round(eased * numTarget);
+      el.textContent = isZeroPadded ? String(current).padStart(2, '0') : current;
+      if (progress < 1) requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  }
+
+  // Benefit card numbers
+  const benefitNums = document.querySelectorAll('.benefit-num');
+  const benefitObs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        const target = e.target.getAttribute('data-target');
+        animateCount(e.target, target, 800);
+        benefitObs.unobserve(e.target);
+      }
+    });
+  }, { threshold: .5 });
+  benefitNums.forEach(el => benefitObs.observe(el));
+
+  // Proof counter
+  const proofCount = document.getElementById('proofCount');
+  if (proofCount) {
+    const proofObs = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          animateCount(e.target, e.target.getAttribute('data-target'), 1400);
+          proofObs.unobserve(e.target);
+        }
+      });
+    }, { threshold: .5 });
+    proofObs.observe(proofCount);
+  }
+})();
+
+/* ══════════════════════════════════════════
+   VIP FORM SUBMIT
+   ══════════════════════════════════════════ */
+(function(){
+  const form = document.getElementById('vipForm');
+  const btn = document.getElementById('vipBtn');
+  const successMsg = document.getElementById('successMsg');
+  if (!form || !btn || !successMsg) return;
+
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    const email = document.getElementById('vipEmail').value.trim();
+    if (!email) return;
+
+    // Loading state
+    btn.classList.add('loading');
+
+    // Simulate API call
+    setTimeout(() => {
+      form.style.display = 'none';
+      successMsg.classList.add('show');
+    }, 1600);
+  });
+})();
+</script>
+</body>
+</html>
