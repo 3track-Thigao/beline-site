@@ -466,61 +466,6 @@ footer { background: var(--w); padding: 80px 64px 0; border-top: 1px solid var(-
 /* ══════════════════════════════════════════
    MARQUEE OUTLINE — giant stroke text
    ══════════════════════════════════════════ */
-.marquee-outline {
-  overflow: hidden; white-space: nowrap;
-  padding: 32px 0;
-  position: relative;
-  background: var(--w);
-}
-.marquee-outline .mo-track {
-  display: inline-flex;
-  animation: moScroll 20s linear infinite;
-}
-.marquee-outline .mo-track span {
-  font-family: 'Saira', sans-serif;
-  font-size: clamp(60px, 10vw, 120px);
-  font-weight: 600;
-  letter-spacing: .15em;
-  text-transform: uppercase;
-  color: transparent;
-  -webkit-text-stroke: 1.5px rgba(140,5,2,.12);
-  padding: 0 48px;
-  user-select: none;
-  transition: -webkit-text-stroke-color .4s;
-}
-.marquee-outline .mo-track span em {
-  font-style: normal;
-  -webkit-text-stroke-color: rgba(157,117,62,.2);
-}
-.marquee-outline:hover .mo-track span {
-  -webkit-text-stroke-color: rgba(140,5,2,.25);
-}
-.marquee-outline:hover .mo-track span em {
-  -webkit-text-stroke-color: rgba(157,117,62,.35);
-}
-/* reverse direction variant */
-.marquee-outline.reverse .mo-track {
-  animation-name: moScrollReverse;
-}
-@keyframes moScroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
-@keyframes moScrollReverse { from { transform: translateX(-50%); } to { transform: translateX(0); } }
-
-/* dark bg variant */
-.marquee-outline.mo-dark {
-  background: var(--b);
-}
-.marquee-outline.mo-dark .mo-track span {
-  -webkit-text-stroke-color: rgba(255,255,255,.06);
-}
-.marquee-outline.mo-dark .mo-track span em {
-  -webkit-text-stroke-color: rgba(157,117,62,.1);
-}
-.marquee-outline.mo-dark:hover .mo-track span {
-  -webkit-text-stroke-color: rgba(255,255,255,.12);
-}
-.marquee-outline.mo-dark:hover .mo-track span em {
-  -webkit-text-stroke-color: rgba(157,117,62,.2);
-}
 
 /* ══════════════════════════════════════════
    SPOTLIGHT — cursor light on manifesto
@@ -1082,13 +1027,6 @@ nav.dark .ham span { background: var(--w); }
   </div>
 </section>
 
-<!-- MARQUEE OUTLINE — between sections -->
-<div class="marquee-outline" aria-hidden="true">
-  <div class="mo-track">
-    <span>BE<em>.</em>LINE</span><span>BE<em>.</em>LINE</span><span>BE<em>.</em>LINE</span><span>BE<em>.</em>LINE</span><span>BE<em>.</em>LINE</span><span>BE<em>.</em>LINE</span><span>BE<em>.</em>LINE</span><span>BE<em>.</em>LINE</span>
-  </div>
-</div>
-
 <div class="stripe stripe-co"></div>
 
 <!-- MANIFESTO — TEXT REVEAL ON SCROLL -->
@@ -1152,11 +1090,6 @@ nav.dark .ham span { background: var(--w); }
 </section>
 
 <!-- MARQUEE OUTLINE REVERSE — dark bg -->
-<div class="marquee-outline mo-dark reverse" aria-hidden="true">
-  <div class="mo-track">
-    <span>BE<em>.</em>LINE</span><span>BE<em>.</em>LINE</span><span>BE<em>.</em>LINE</span><span>BE<em>.</em>LINE</span><span>BE<em>.</em>LINE</span><span>BE<em>.</em>LINE</span><span>BE<em>.</em>LINE</span><span>BE<em>.</em>LINE</span>
-  </div>
-</div>
 
 <div class="stripe stripe-co"></div>
 
